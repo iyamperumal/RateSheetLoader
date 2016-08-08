@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CcshlRateSheet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LenderCategories">
+          <Key>
+            <PropertyRef Name="LenderCategoryId" />
+          </Key>
+          <Property Name="LenderCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderId" Type="int" Nullable="false" />
+          <Property Name="LenderCategoryName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="4000" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LenderCategoriesTemp">
+          <Key>
+            <PropertyRef Name="LenderCategoryId" />
+          </Key>
+          <Property Name="LenderCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderId" Type="int" Nullable="false" />
+          <Property Name="LenderCategoryName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="4000" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ccshl.ratesheet.LenderPlanNames' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LenderPlanNames">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="LenderId" />
+            <PropertyRef Name="OtherName" />
+          </Key>
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="LenderId" Type="int" Nullable="false" />
+          <Property Name="OtherName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ccshl.ratesheet.LenderPlanNamesTemp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LenderPlanNamesTemp">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="LenderId" />
+            <PropertyRef Name="OtherName" />
+          </Key>
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="LenderId" Type="int" Nullable="false" />
+          <Property Name="OtherName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Lenders">
+          <Key>
+            <PropertyRef Name="LenderId" />
+          </Key>
+          <Property Name="LenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LendersTemp">
+          <Key>
+            <PropertyRef Name="LenderId" />
+          </Key>
+          <Property Name="LenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Plans">
+          <Key>
+            <PropertyRef Name="Planid" />
+          </Key>
+          <Property Name="Planid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderCategoryId" Type="int" Nullable="false" />
+          <Property Name="PlanName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlanDescription" Type="varchar" MaxLength="200" />
+          <Property Name="Note" Type="varchar" MaxLength="4000" />
+          <Property Name="UseFHA_HighBalForBaseLoan" Type="bit" />
+          <Property Name="FHA_HighBalForBaseLoanAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="NumberofRateTypes" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PlansTemp">
+          <Key>
+            <PropertyRef Name="Planid" />
+          </Key>
+          <Property Name="Planid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LenderCategoryId" Type="int" Nullable="false" />
+          <Property Name="PlanName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlanDescription" Type="varchar" MaxLength="200" />
+          <Property Name="Note" Type="varchar" MaxLength="4000" />
+          <Property Name="UseFHA_HighBalForBaseLoan" Type="bit" />
+          <Property Name="FHA_HighBalForBaseLoanAmount" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="NumberofRateTypes" Type="int" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RateHistory">
+          <Key>
+            <PropertyRef Name="RateHistoryId" />
+          </Key>
+          <Property Name="RateHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RateId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="Day15" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="HistoryDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rates">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Day15" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RatesTemp">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Day15" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_LenderCategories_Lenders">
+          <End Role="Lenders" Type="Self.Lenders" Multiplicity="1" />
+          <End Role="LenderCategories" Type="Self.LenderCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenders">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderCategories">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderCategoriesTemp_LendersTemp">
+          <End Role="LendersTemp" Type="Self.LendersTemp" Multiplicity="1" />
+          <End Role="LenderCategoriesTemp" Type="Self.LenderCategoriesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LendersTemp">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderCategoriesTemp">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNames_Lenders">
+          <End Role="Lenders" Type="Self.Lenders" Multiplicity="1" />
+          <End Role="LenderPlanNames" Type="Self.LenderPlanNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenders">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderPlanNames">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNames_Plans">
+          <End Role="Plans" Type="Self.Plans" Multiplicity="1" />
+          <End Role="LenderPlanNames" Type="Self.LenderPlanNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="LenderPlanNames">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNamesTemp_LendersTemp">
+          <End Role="LendersTemp" Type="Self.LendersTemp" Multiplicity="1" />
+          <End Role="LenderPlanNamesTemp" Type="Self.LenderPlanNamesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LendersTemp">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderPlanNamesTemp">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNamesTemp_PlansTemp">
+          <End Role="PlansTemp" Type="Self.PlansTemp" Multiplicity="1" />
+          <End Role="LenderPlanNamesTemp" Type="Self.LenderPlanNamesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlansTemp">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="LenderPlanNamesTemp">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plans_LenderCategories">
+          <End Role="LenderCategories" Type="Self.LenderCategories" Multiplicity="1" />
+          <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LenderCategories">
+              <PropertyRef Name="LenderCategoryId" />
+            </Principal>
+            <Dependent Role="Plans">
+              <PropertyRef Name="LenderCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlansTemp_LenderCategoriesTemp">
+          <End Role="LenderCategoriesTemp" Type="Self.LenderCategoriesTemp" Multiplicity="1" />
+          <End Role="PlansTemp" Type="Self.PlansTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LenderCategoriesTemp">
+              <PropertyRef Name="LenderCategoryId" />
+            </Principal>
+            <Dependent Role="PlansTemp">
+              <PropertyRef Name="LenderCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateHistory_Plans">
+          <End Role="Plans" Type="Self.Plans" Multiplicity="1" />
+          <End Role="RateHistory" Type="Self.RateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="RateHistory">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rates_Plans">
+          <End Role="Plans" Type="Self.Plans" Multiplicity="1" />
+          <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="Rates">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RatesTemp_PlansTemp">
+          <End Role="PlansTemp" Type="Self.PlansTemp" Multiplicity="1" />
+          <End Role="RatesTemp" Type="Self.RatesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlansTemp">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="RatesTemp">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CcshlRateSheetStoreContainer">
+          <EntitySet Name="LenderCategories" EntityType="Self.LenderCategories" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="LenderCategoriesTemp" EntityType="Self.LenderCategoriesTemp" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="Lenders" EntityType="Self.Lenders" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="LendersTemp" EntityType="Self.LendersTemp" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="Plans" EntityType="Self.Plans" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="PlansTemp" EntityType="Self.PlansTemp" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="RateHistory" EntityType="Self.RateHistory" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="Rates" EntityType="Self.Rates" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="RatesTemp" EntityType="Self.RatesTemp" Schema="ratesheet" store:Type="Tables" />
+          <EntitySet Name="LenderPlanNames" EntityType="Self.LenderPlanNames" store:Type="Tables" store:Schema="ratesheet">
+            <DefiningQuery>SELECT 
+    [LenderPlanNames].[PlanId] AS [PlanId], 
+    [LenderPlanNames].[LenderId] AS [LenderId], 
+    [LenderPlanNames].[OtherName] AS [OtherName], 
+    [LenderPlanNames].[LastModifiedBy] AS [LastModifiedBy], 
+    [LenderPlanNames].[LastModifiedDate] AS [LastModifiedDate], 
+    [LenderPlanNames].[CreatedBy] AS [CreatedBy], 
+    [LenderPlanNames].[CreatedDate] AS [CreatedDate]
+    FROM [ratesheet].[LenderPlanNames] AS [LenderPlanNames]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LenderPlanNamesTemp" EntityType="Self.LenderPlanNamesTemp" store:Type="Tables" store:Schema="ratesheet">
+            <DefiningQuery>SELECT 
+    [LenderPlanNamesTemp].[PlanId] AS [PlanId], 
+    [LenderPlanNamesTemp].[LenderId] AS [LenderId], 
+    [LenderPlanNamesTemp].[OtherName] AS [OtherName], 
+    [LenderPlanNamesTemp].[LastModifiedBy] AS [LastModifiedBy], 
+    [LenderPlanNamesTemp].[LastModifiedDate] AS [LastModifiedDate], 
+    [LenderPlanNamesTemp].[CreatedBy] AS [CreatedBy], 
+    [LenderPlanNamesTemp].[CreatedDate] AS [CreatedDate]
+    FROM [ratesheet].[LenderPlanNamesTemp] AS [LenderPlanNamesTemp]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_LenderCategories_Lenders" Association="Self.FK_LenderCategories_Lenders">
+            <End Role="Lenders" EntitySet="Lenders" />
+            <End Role="LenderCategories" EntitySet="LenderCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderCategoriesTemp_LendersTemp" Association="Self.FK_LenderCategoriesTemp_LendersTemp">
+            <End Role="LendersTemp" EntitySet="LendersTemp" />
+            <End Role="LenderCategoriesTemp" EntitySet="LenderCategoriesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNames_Lenders" Association="Self.FK_LenderPlanNames_Lenders">
+            <End Role="Lenders" EntitySet="Lenders" />
+            <End Role="LenderPlanNames" EntitySet="LenderPlanNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNames_Plans" Association="Self.FK_LenderPlanNames_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="LenderPlanNames" EntitySet="LenderPlanNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNamesTemp_LendersTemp" Association="Self.FK_LenderPlanNamesTemp_LendersTemp">
+            <End Role="LendersTemp" EntitySet="LendersTemp" />
+            <End Role="LenderPlanNamesTemp" EntitySet="LenderPlanNamesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNamesTemp_PlansTemp" Association="Self.FK_LenderPlanNamesTemp_PlansTemp">
+            <End Role="PlansTemp" EntitySet="PlansTemp" />
+            <End Role="LenderPlanNamesTemp" EntitySet="LenderPlanNamesTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plans_LenderCategories" Association="Self.FK_Plans_LenderCategories">
+            <End Role="LenderCategories" EntitySet="LenderCategories" />
+            <End Role="Plans" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlansTemp_LenderCategoriesTemp" Association="Self.FK_PlansTemp_LenderCategoriesTemp">
+            <End Role="LenderCategoriesTemp" EntitySet="LenderCategoriesTemp" />
+            <End Role="PlansTemp" EntitySet="PlansTemp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateHistory_Plans" Association="Self.FK_RateHistory_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="RateHistory" EntitySet="RateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rates_Plans" Association="Self.FK_Rates_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="Rates" EntitySet="Rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RatesTemp_PlansTemp" Association="Self.FK_RatesTemp_PlansTemp">
+            <End Role="PlansTemp" EntitySet="PlansTemp" />
+            <End Role="RatesTemp" EntitySet="RatesTemp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CcshlRateSheet" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LenderCategory">
+          <Key>
+            <PropertyRef Name="LenderCategoryId" />
+          </Key>
+          <Property Name="LenderCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderId" Type="Int32" Nullable="false" />
+          <Property Name="LenderCategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lender" Relationship="Self.FK_LenderCategories_Lenders" FromRole="LenderCategories" ToRole="Lenders" />
+          <NavigationProperty Name="Plans" Relationship="Self.FK_Plans_LenderCategories" FromRole="LenderCategories" ToRole="Plans" />
+        </EntityType>
+        <EntityType Name="Lender">
+          <Key>
+            <PropertyRef Name="LenderId" />
+          </Key>
+          <Property Name="LenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LenderCategories" Relationship="Self.FK_LenderCategories_Lenders" FromRole="Lenders" ToRole="LenderCategories" />
+          <NavigationProperty Name="LenderPlanNames" Relationship="Self.FK_LenderPlanNames_Lenders" FromRole="Lenders" ToRole="LenderPlanNames" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="Planid" />
+          </Key>
+          <Property Name="Planid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlanDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="UseFHA_HighBalForBaseLoan" Type="Boolean" />
+          <Property Name="FHA_HighBalForBaseLoanAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="NumberofRateTypes" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LenderCategory" Relationship="Self.FK_Plans_LenderCategories" FromRole="Plans" ToRole="LenderCategories" />
+          <NavigationProperty Name="LenderPlanNames" Relationship="Self.FK_LenderPlanNames_Plans" FromRole="Plans" ToRole="LenderPlanNames" />
+          <NavigationProperty Name="Rates" Relationship="Self.FK_Rates_Plans" FromRole="Plans" ToRole="Rates" />
+          <NavigationProperty Name="RateHistories" Relationship="CcshlRateSheet.FK_RateHistory_Plans" FromRole="Plan" ToRole="RateHistory" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rate1" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="Day15" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Plan" Relationship="Self.FK_Rates_Plans" FromRole="Rates" ToRole="Plans" />
+          <NavigationProperty Name="RateHistories" Relationship="CcshlRateSheet.FK_RateHistory_Rates" FromRole="Rate" ToRole="RateHistory" />
+        </EntityType>
+        <EntityType Name="LenderPlanName">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="LenderId" />
+            <PropertyRef Name="OtherName" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="LenderId" Type="Int32" Nullable="false" />
+          <Property Name="OtherName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Lender" Relationship="Self.FK_LenderPlanNames_Lenders" FromRole="LenderPlanNames" ToRole="Lenders" />
+          <NavigationProperty Name="Plan" Relationship="Self.FK_LenderPlanNames_Plans" FromRole="LenderPlanNames" ToRole="Plans" />
+        </EntityType>
+        <Association Name="FK_LenderCategories_Lenders">
+          <End Role="Lenders" Type="Self.Lender" Multiplicity="1" />
+          <End Role="LenderCategories" Type="Self.LenderCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenders">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderCategories">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plans_LenderCategories">
+          <End Role="LenderCategories" Type="Self.LenderCategory" Multiplicity="1" />
+          <End Role="Plans" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LenderCategories">
+              <PropertyRef Name="LenderCategoryId" />
+            </Principal>
+            <Dependent Role="Plans">
+              <PropertyRef Name="LenderCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNames_Lenders">
+          <End Role="Lenders" Type="Self.Lender" Multiplicity="1" />
+          <End Role="LenderPlanNames" Type="Self.LenderPlanName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenders">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderPlanNames">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNames_Plans">
+          <End Role="Plans" Type="Self.Plan" Multiplicity="1" />
+          <End Role="LenderPlanNames" Type="Self.LenderPlanName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="LenderPlanNames">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rates_Plans">
+          <End Role="Plans" Type="Self.Plan" Multiplicity="1" />
+          <End Role="Rates" Type="Self.Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="Rates">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CcshlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LenderCategories" EntityType="Self.LenderCategory" />
+          <EntitySet Name="Lenders" EntityType="Self.Lender" />
+          <EntitySet Name="Plans" EntityType="Self.Plan" />
+          <EntitySet Name="Rates" EntityType="Self.Rate" />
+          <EntitySet Name="LenderPlanNames" EntityType="Self.LenderPlanName" />
+          <AssociationSet Name="FK_LenderCategories_Lenders" Association="Self.FK_LenderCategories_Lenders">
+            <End Role="Lenders" EntitySet="Lenders" />
+            <End Role="LenderCategories" EntitySet="LenderCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plans_LenderCategories" Association="Self.FK_Plans_LenderCategories">
+            <End Role="LenderCategories" EntitySet="LenderCategories" />
+            <End Role="Plans" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNames_Lenders" Association="Self.FK_LenderPlanNames_Lenders">
+            <End Role="Lenders" EntitySet="Lenders" />
+            <End Role="LenderPlanNames" EntitySet="LenderPlanNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNames_Plans" Association="Self.FK_LenderPlanNames_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="LenderPlanNames" EntitySet="LenderPlanNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rates_Plans" Association="Self.FK_Rates_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="Rates" EntitySet="Rates" />
+          </AssociationSet>
+          <EntitySet Name="LenderCategoriesTemps" EntityType="CcshlRateSheet.LenderCategoriesTemp" />
+          <EntitySet Name="LendersTemps" EntityType="CcshlRateSheet.LendersTemp" />
+          <EntitySet Name="PlansTemps" EntityType="CcshlRateSheet.PlansTemp" />
+          <EntitySet Name="RateHistories" EntityType="CcshlRateSheet.RateHistory" />
+          <EntitySet Name="RatesTemps" EntityType="CcshlRateSheet.RatesTemp" />
+          <EntitySet Name="LenderPlanNamesTemps" EntityType="CcshlRateSheet.LenderPlanNamesTemp" />
+          <AssociationSet Name="FK_LenderCategoriesTemp_LendersTemp" Association="CcshlRateSheet.FK_LenderCategoriesTemp_LendersTemp">
+            <End Role="LendersTemp" EntitySet="LendersTemps" />
+            <End Role="LenderCategoriesTemp" EntitySet="LenderCategoriesTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlansTemp_LenderCategoriesTemp" Association="CcshlRateSheet.FK_PlansTemp_LenderCategoriesTemp">
+            <End Role="LenderCategoriesTemp" EntitySet="LenderCategoriesTemps" />
+            <End Role="PlansTemp" EntitySet="PlansTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNamesTemp_LendersTemp" Association="CcshlRateSheet.FK_LenderPlanNamesTemp_LendersTemp">
+            <End Role="LendersTemp" EntitySet="LendersTemps" />
+            <End Role="LenderPlanNamesTemp" EntitySet="LenderPlanNamesTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateHistory_Plans" Association="CcshlRateSheet.FK_RateHistory_Plans">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="RateHistory" EntitySet="RateHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LenderPlanNamesTemp_PlansTemp" Association="CcshlRateSheet.FK_LenderPlanNamesTemp_PlansTemp">
+            <End Role="PlansTemp" EntitySet="PlansTemps" />
+            <End Role="LenderPlanNamesTemp" EntitySet="LenderPlanNamesTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RatesTemp_PlansTemp" Association="CcshlRateSheet.FK_RatesTemp_PlansTemp">
+            <End Role="PlansTemp" EntitySet="PlansTemps" />
+            <End Role="RatesTemp" EntitySet="RatesTemps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RateHistory_Rates" Association="CcshlRateSheet.FK_RateHistory_Rates">
+            <End Role="Rate" EntitySet="Rates" />
+            <End Role="RateHistory" EntitySet="RateHistories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="LenderCategoriesTemp">
+          <Key>
+            <PropertyRef Name="LenderCategoryId" />
+          </Key>
+          <Property Name="LenderCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderId" Type="Int32" Nullable="false" />
+          <Property Name="LenderCategoryName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LendersTemp" Relationship="CcshlRateSheet.FK_LenderCategoriesTemp_LendersTemp" FromRole="LenderCategoriesTemp" ToRole="LendersTemp" />
+          <NavigationProperty Name="PlansTemps" Relationship="CcshlRateSheet.FK_PlansTemp_LenderCategoriesTemp" FromRole="LenderCategoriesTemp" ToRole="PlansTemp" />
+        </EntityType>
+        <EntityType Name="LendersTemp">
+          <Key>
+            <PropertyRef Name="LenderId" />
+          </Key>
+          <Property Name="LenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LenderCategoriesTemps" Relationship="CcshlRateSheet.FK_LenderCategoriesTemp_LendersTemp" FromRole="LendersTemp" ToRole="LenderCategoriesTemp" />
+          <NavigationProperty Name="LenderPlanNamesTemps" Relationship="CcshlRateSheet.FK_LenderPlanNamesTemp_LendersTemp" FromRole="LendersTemp" ToRole="LenderPlanNamesTemp" />
+        </EntityType>
+        <EntityType Name="PlansTemp">
+          <Key>
+            <PropertyRef Name="Planid" />
+          </Key>
+          <Property Name="Planid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LenderCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PlanName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlanDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="UseFHA_HighBalForBaseLoan" Type="Boolean" />
+          <Property Name="FHA_HighBalForBaseLoanAmount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="NumberofRateTypes" Type="Int32" Nullable="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LenderCategoriesTemp" Relationship="CcshlRateSheet.FK_PlansTemp_LenderCategoriesTemp" FromRole="PlansTemp" ToRole="LenderCategoriesTemp" />
+          <NavigationProperty Name="LenderPlanNamesTemps" Relationship="CcshlRateSheet.FK_LenderPlanNamesTemp_PlansTemp" FromRole="PlansTemp" ToRole="LenderPlanNamesTemp" />
+          <NavigationProperty Name="RatesTemps" Relationship="CcshlRateSheet.FK_RatesTemp_PlansTemp" FromRole="PlansTemp" ToRole="RatesTemp" />
+        </EntityType>
+        <EntityType Name="RateHistory">
+          <Key>
+            <PropertyRef Name="RateHistoryId" />
+          </Key>
+          <Property Name="RateHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="Day15" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="HistoryDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Plan" Relationship="CcshlRateSheet.FK_RateHistory_Plans" FromRole="RateHistory" ToRole="Plan" />
+          <NavigationProperty Name="Rate1" Relationship="CcshlRateSheet.FK_RateHistory_Rates" FromRole="RateHistory" ToRole="Rate" />
+        </EntityType>
+        <EntityType Name="RatesTemp">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Day15" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day30" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day45" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Day60" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PlansTemp" Relationship="CcshlRateSheet.FK_RatesTemp_PlansTemp" FromRole="RatesTemp" ToRole="PlansTemp" />
+        </EntityType>
+        <EntityType Name="LenderPlanNamesTemp">
+          <Key>
+            <PropertyRef Name="PlanId" />
+            <PropertyRef Name="LenderId" />
+            <PropertyRef Name="OtherName" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" />
+          <Property Name="LenderId" Type="Int32" Nullable="false" />
+          <Property Name="OtherName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LendersTemp" Relationship="CcshlRateSheet.FK_LenderPlanNamesTemp_LendersTemp" FromRole="LenderPlanNamesTemp" ToRole="LendersTemp" />
+          <NavigationProperty Name="PlansTemp" Relationship="CcshlRateSheet.FK_LenderPlanNamesTemp_PlansTemp" FromRole="LenderPlanNamesTemp" ToRole="PlansTemp" />
+        </EntityType>
+        <Association Name="FK_LenderCategoriesTemp_LendersTemp">
+          <End Type="CcshlRateSheet.LendersTemp" Role="LendersTemp" Multiplicity="1" />
+          <End Type="CcshlRateSheet.LenderCategoriesTemp" Role="LenderCategoriesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LendersTemp">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderCategoriesTemp">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlansTemp_LenderCategoriesTemp">
+          <End Type="CcshlRateSheet.LenderCategoriesTemp" Role="LenderCategoriesTemp" Multiplicity="1" />
+          <End Type="CcshlRateSheet.PlansTemp" Role="PlansTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LenderCategoriesTemp">
+              <PropertyRef Name="LenderCategoryId" />
+            </Principal>
+            <Dependent Role="PlansTemp">
+              <PropertyRef Name="LenderCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNamesTemp_LendersTemp">
+          <End Type="CcshlRateSheet.LendersTemp" Role="LendersTemp" Multiplicity="1" />
+          <End Type="CcshlRateSheet.LenderPlanNamesTemp" Role="LenderPlanNamesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LendersTemp">
+              <PropertyRef Name="LenderId" />
+            </Principal>
+            <Dependent Role="LenderPlanNamesTemp">
+              <PropertyRef Name="LenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateHistory_Plans">
+          <End Type="CcshlRateSheet.Plan" Role="Plan" Multiplicity="1" />
+          <End Type="CcshlRateSheet.RateHistory" Role="RateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="RateHistory">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LenderPlanNamesTemp_PlansTemp">
+          <End Type="CcshlRateSheet.PlansTemp" Role="PlansTemp" Multiplicity="1" />
+          <End Type="CcshlRateSheet.LenderPlanNamesTemp" Role="LenderPlanNamesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlansTemp">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="LenderPlanNamesTemp">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RatesTemp_PlansTemp">
+          <End Type="CcshlRateSheet.PlansTemp" Role="PlansTemp" Multiplicity="1" />
+          <End Type="CcshlRateSheet.RatesTemp" Role="RatesTemp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlansTemp">
+              <PropertyRef Name="Planid" />
+            </Principal>
+            <Dependent Role="RatesTemp">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RateHistory_Rates">
+          <End Type="CcshlRateSheet.Rate" Role="Rate" Multiplicity="1" />
+          <End Type="CcshlRateSheet.RateHistory" Role="RateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rate">
+              <PropertyRef Name="RateId" />
+            </Principal>
+            <Dependent Role="RateHistory">
+              <PropertyRef Name="RateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CcshlRateSheetStoreContainer" CdmEntityContainer="CcshlEntities">
+          <EntitySetMapping Name="LenderCategories">
+            <EntityTypeMapping TypeName="CcshlRateSheet.LenderCategory">
+              <MappingFragment StoreEntitySet="LenderCategories">
+                <ScalarProperty Name="LenderCategoryId" ColumnName="LenderCategoryId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="LenderCategoryName" ColumnName="LenderCategoryName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lenders">
+            <EntityTypeMapping TypeName="CcshlRateSheet.Lender">
+              <MappingFragment StoreEntitySet="Lenders">
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="CcshlRateSheet.Plan">
+              <MappingFragment StoreEntitySet="Plans">
+                <ScalarProperty Name="Planid" ColumnName="Planid" />
+                <ScalarProperty Name="LenderCategoryId" ColumnName="LenderCategoryId" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="PlanDescription" ColumnName="PlanDescription" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="UseFHA_HighBalForBaseLoan" ColumnName="UseFHA_HighBalForBaseLoan" />
+                <ScalarProperty Name="FHA_HighBalForBaseLoanAmount" ColumnName="FHA_HighBalForBaseLoanAmount" />
+                <ScalarProperty Name="NumberofRateTypes" ColumnName="NumberofRateTypes" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="CcshlRateSheet.Rate">
+              <MappingFragment StoreEntitySet="Rates">
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="Rate1" ColumnName="Rate" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="Day15" ColumnName="Day15" />
+                <ScalarProperty Name="Day30" ColumnName="Day30" />
+                <ScalarProperty Name="Day45" ColumnName="Day45" />
+                <ScalarProperty Name="Day60" ColumnName="Day60" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LenderPlanNames">
+            <EntityTypeMapping TypeName="CcshlRateSheet.LenderPlanName">
+              <MappingFragment StoreEntitySet="LenderPlanNames">
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="OtherName" ColumnName="OtherName" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LenderCategoriesTemps">
+            <EntityTypeMapping TypeName="CcshlRateSheet.LenderCategoriesTemp">
+              <MappingFragment StoreEntitySet="LenderCategoriesTemp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="LenderCategoryName" ColumnName="LenderCategoryName" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="LenderCategoryId" ColumnName="LenderCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LendersTemps">
+            <EntityTypeMapping TypeName="CcshlRateSheet.LendersTemp">
+              <MappingFragment StoreEntitySet="LendersTemp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="LenderName" ColumnName="LenderName" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlansTemps">
+            <EntityTypeMapping TypeName="CcshlRateSheet.PlansTemp">
+              <MappingFragment StoreEntitySet="PlansTemp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="NumberofRateTypes" ColumnName="NumberofRateTypes" />
+                <ScalarProperty Name="FHA_HighBalForBaseLoanAmount" ColumnName="FHA_HighBalForBaseLoanAmount" />
+                <ScalarProperty Name="UseFHA_HighBalForBaseLoan" ColumnName="UseFHA_HighBalForBaseLoan" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="PlanDescription" ColumnName="PlanDescription" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="LenderCategoryId" ColumnName="LenderCategoryId" />
+                <ScalarProperty Name="Planid" ColumnName="Planid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateHistories">
+            <EntityTypeMapping TypeName="CcshlRateSheet.RateHistory">
+              <MappingFragment StoreEntitySet="RateHistory">
+                <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Day60" ColumnName="Day60" />
+                <ScalarProperty Name="Day45" ColumnName="Day45" />
+                <ScalarProperty Name="Day30" ColumnName="Day30" />
+                <ScalarProperty Name="Day15" ColumnName="Day15" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="RateHistoryId" ColumnName="RateHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RatesTemps">
+            <EntityTypeMapping TypeName="CcshlRateSheet.RatesTemp">
+              <MappingFragment StoreEntitySet="RatesTemp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="Day60" ColumnName="Day60" />
+                <ScalarProperty Name="Day45" ColumnName="Day45" />
+                <ScalarProperty Name="Day30" ColumnName="Day30" />
+                <ScalarProperty Name="Day15" ColumnName="Day15" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LenderPlanNamesTemps">
+            <EntityTypeMapping TypeName="CcshlRateSheet.LenderPlanNamesTemp">
+              <MappingFragment StoreEntitySet="LenderPlanNamesTemp">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+                <ScalarProperty Name="OtherName" ColumnName="OtherName" />
+                <ScalarProperty Name="LenderId" ColumnName="LenderId" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
